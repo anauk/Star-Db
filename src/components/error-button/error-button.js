@@ -13,8 +13,9 @@ export default class ErrorButton extends Component {
             this.foo.bar = 0;
         }
         return (
-            <button className="error-button btn btn-danger btn-lg"
-                    onClick={() => this.setState({renderError: true})}>
+            <button
+                className="error-button btn btn-danger btn-lg"
+                onClick={() => this.setState({renderError: true})}>
                 Throw Error
             </button>
         );
