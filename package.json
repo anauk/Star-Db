@@ -27,5 +27,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "https://regex101.com - сайт для создания регулярных выражений https://loading.io - сайт для создания индикатора загрузки",
+  "main": "index.js",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anauk/Star-Db.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anauk/Star-Db/issues"
+  },
+  "homepage": "https://github.com/anauk/Star-Db#readme"
 }
