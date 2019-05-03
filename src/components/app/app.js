@@ -9,7 +9,7 @@ import PersonDetails from "../person-details";
 export default  class App extends Component {
     state = {
         showRandomPlanet: true,
-        selectedPerson: 6
+        selectedPerson: 1
     };
     toggleRandomPlanet = () =>{
         this.setState((state)=>{

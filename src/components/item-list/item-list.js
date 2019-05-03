@@ -22,7 +22,7 @@ export default class ItemList extends Component{
             return (
             <li className="list-group-item"
             key={id}
-            onClick={() => this.propsOnItemSelected(id)}>
+            onClick={() => this.onItemSelected(id)}>
                 {name}</li>
             )
         });
@@ -39,6 +39,10 @@ export default class ItemList extends Component{
                 {items}
             </ul>
         );
+    }
+
+    onItemSelected(id) {
+        console.log(id);
     }
 };
 
