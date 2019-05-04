@@ -2,28 +2,11 @@ import React, {Component} from 'react';
 
 import './people-page.css';
 import ItemList from "../item-list/item-list";
-import PersonDetails from "../person-details/person-details";
+import PersonDetails from "../item-details/item-details";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../services/swapi-service";
-import Row from "../row"
-
-class ErrorBoundry extends Component {
-    state = {
-        hasError: false
-    }
-    componentDidCatch(error, info) {
-        debugger;
-        this.setState({
-            hasError: true
-        });
-    }
-    render() {
-        if (this.state.hasError){
-            return <ErrorIndicator/>
-        }
-        return this.props.children;
-    }
-}
+import Row from "../row";
+import ErrorBoundry from "../error-boundry";
 
 export default class PeoplePage extends Component {
     swapiService = new SwapiService();
