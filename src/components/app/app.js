@@ -43,6 +43,9 @@ export default class App extends Component {
             <ItemDetails itemId={5}
                          getData={getStarship}
                          getImageUrl={getStarshipImage}>
+                <Record field="model" label="Model"/>
+                <Record field="manufacturer" label="Manufacturer"/>
+                <Record field="costInCredits" label="Cost"/>
             </ItemDetails>
         )
         const planet = this.state.showRandomPlanet ? <RandomPanel/> : null;
