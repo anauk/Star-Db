@@ -5,34 +5,31 @@ import ItemList from "../item-list/item-list";
 import PersonDetails from "../person-details/person-details";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../services/swapi-service";
+import Row from "../row"
 
-const Row = ({left, rigth}) => {
-    return (
-        <div className="row mb2">
-            <div className="col-md-6">
-                {left}
-            </div>
-            <div className="col-md-6">
-                {rigth}
-            </div>
-        </div>
-    );
-};
-
-export default class PeoplePage extends Component {
-    swapiService = new SwapiService();
+class ErrorBoundry extends Component {
     state = {
-        selectedPerson: 3,
         hasError: false
-    };
-
+    }
     componentDidCatch(error, info) {
         debugger;
         this.setState({
             hasError: true
         });
     }
+    render() {
+        if (this.state.hasError){
+            return <ErrorIndicator/>
+        }
+        return this.props.children;
+    }
+}
 
+export default class PeoplePage extends Component {
+    swapiService = new SwapiService();
+    state = {
+        selectedPerson: 3
+    };
     onPersonSelected = (id) => {
         this.setState({
             selectedPerson: id
@@ -51,10 +48,12 @@ export default class PeoplePage extends Component {
             />
         );
         const personDetails = (
+            <ErrorBoundry>
             <PersonDetails personId={this.state.selectedPerson}/>
+            </ErrorBoundry>
         );
         return (
-           <Row left={itemList} rigth={personDetails} />
+            <Row left={itemList} rigth={personDetails}/>
         );
     }
 }
