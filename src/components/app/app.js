@@ -4,14 +4,11 @@ import Header from '../header';
 import './app.css';
 
 import RandomPanel from "../random-planet";
-import ErrorButton from "../error-button";
-import ErrorIndicator from "../error-indicator";
-import PeoplePage from "../people-page";
-import ItemList from "../item-list";
 import ItemDetails from "../item-details";
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundry from "../error-boundry";
 import Row from "../row";
+import {Record} from "../item-details/item-details";
 
 export default class App extends Component {
     swapiService = new SwapiService();
@@ -37,12 +34,16 @@ export default class App extends Component {
         const personDetails = (
             <ItemDetails itemId={11}
                          getData={getPerson}
-                         getImageUrl={getPersonImage}/>
+                         getImageUrl={getPersonImage}>
+                <Record field="gender" label="Gender"/>
+                <Record field="eyeColor" label="Eye Color"/>
+            </ItemDetails>
         );
         const starshipDetails = (
             <ItemDetails itemId={5}
                          getData={getStarship}
-                         getImageUrl={getStarshipImage}/>
+                         getImageUrl={getStarshipImage}>
+            </ItemDetails>
         )
         const planet = this.state.showRandomPlanet ? <RandomPanel/> : null;
         return (
