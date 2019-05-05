@@ -5,7 +5,7 @@ export default class PlanetDetails extends Components{
     render(){
         return (
             <div className="planet-details card">
-                <img className={} src="" alt=""/>
+                <img className="" src="" alt=""/>
                 <div>
                     <h4></h4>
                     <ul>

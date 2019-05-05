@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+
 import './item-details.css';
-import SwapiService from "../../services/swapi-service";
-import Spiner from "../random-planet/random-planet";
-import ErrorButton from "../error-button";
+
+import ErrorButton from "../error-button/error-button";
 
 const Record = ({item, field, label}) => {
     return (
@@ -17,7 +17,7 @@ export {
 };
 
 export default class ItemDetails extends Component {
-    swapiService = new SwapiService();
+
     state = {
         item: null,
         image: null
@@ -28,13 +28,13 @@ export default class ItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.personId !== prevProps.personId) {
+        if (this.props.itemId !== prevProps.itemId) {
             this.updateItem();
         }
     }
 
     updateItem() {
-        const {itemId, getData, getImageUrl} = this.props;
+        const { itemId, getData, getImageUrl } = this.props;
         if (!itemId) {
             return;
         }
@@ -52,15 +52,15 @@ export default class ItemDetails extends Component {
         if (!item) {
             return <span>Select person from list</span>;
         }
-        const {id, name, gender, berthYear, eyeColor} = item;
+        const { name } = item;
 
         return (
             <div className="item-details card">
                 <img className="item-image"
                      src={image}
-                     alt="character"/>
+                     alt="item"/>
                 <div className="card-body">
-                    <h4>{name} {this.props.itemId} </h4>
+                    <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
                         {
                             React.Children.map(this.props.children, (child)=>{
