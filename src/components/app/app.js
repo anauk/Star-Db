@@ -7,7 +7,7 @@ import './app.css';
 import RandomPanel from "../random-planet";
 import ItemDetails, {Record} from "../item-details/item-details";
 import SwapiService from "../../services/swapi-service";
-import DummySwapiService from "../../services/swapi-service";
+import DummySwapiService from "../../services/dummy-swapi-service";
 import ErrorBoundry from "../error-boundry";
 import {SwapiServiceProvider} from "../swapi-service-context";
 
@@ -21,9 +21,20 @@ import {
 } from '../sw-components';
 
 export default class App extends Component {
-    swapiService = new DummySwapiService();
+
     state = {
-        showRandomPlanet: true
+        showRandomPlanet: true,
+        swapiService: new DummySwapiService()
+    };
+    onServiceChange = () => {
+        this.setState(({swapiService}) => {
+            const Service = swapiService instanceof SwapiService ?
+                DummySwapiService : SwapiService;
+            console.log('switched to', Service.name);
+            return {
+                swapiService: new Service()
+            }
+        });
     };
     toggleRandomPlanet = () => {
         this.setState((state) => {
@@ -39,18 +50,16 @@ export default class App extends Component {
             getPerson,
             getStarship,
             getPersonImage,
-            getStarshipImage,
-            getAllPlanets,
-            getAllPeople
-        } = this.swapiService;
+            getStarshipImage
+        } = this.state.swapiService;
         const personDetails = (
             <ItemDetails
                 itemId={11}
                 getData={getPerson}
-                getImageUrl={getPersonImage} >
+                getImageUrl={getPersonImage}>
 
-                <Record field="gender" label="Gender" />
-                <Record field="eyeColor" label="Eye Color" />
+                <Record field="gender" label="Gender"/>
+                <Record field="eyeColor" label="Eye Color"/>
 
             </ItemDetails>
         );
@@ -60,27 +69,27 @@ export default class App extends Component {
                 getData={getStarship}
                 getImageUrl={getStarshipImage}>
 
-                <Record field="model" label="Model" />
-                <Record field="length" label="Length" />
-                <Record field="costInCredits" label="Cost" />
+                <Record field="model" label="Model"/>
+                <Record field="length" label="Length"/>
+                <Record field="costInCredits" label="Cost"/>
             </ItemDetails>
         );
         return (
             <ErrorBoundry>
-                <SwapiServiceProvider value={this.swapiService}>
-                <div className="stardb-app">
-                    <Header/>
-                    <PersonDetails itemId={11}/>
-                    <PlanetDetails itemId={5}/>
-                    <StarshipDetails itemId={9}/>
+                <SwapiServiceProvider value={this.state.swapiService}>
+                    <div className="stardb-app">
+                        <Header onServiceChange={this.onServiceChange}/>
+                        <PersonDetails itemId={11}/>
+                        <PlanetDetails itemId={5}/>
+                        <StarshipDetails itemId={9}/>
 
-                    <PersonList>
-                    </PersonList>
-                    <StarshipList>
-                    </StarshipList>
-                    <PlanetList>
-                    </PlanetList>
-                </div>
+                        <PersonList>
+                        </PersonList>
+                        <StarshipList>
+                        </StarshipList>
+                        <PlanetList>
+                        </PlanetList>
+                    </div>
                 </SwapiServiceProvider>
             </ErrorBoundry>
         );
