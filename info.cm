@@ -4,3 +4,4 @@ componentWillUnmount() - используется для очистки ресу
 componentDidCatch() - обработка не пойманных ошибок в компонентах c жизненными циклами;
 
 утановка библиотеки propTyp: in terminal write npm install prop-types
+утановка библиотеки react-router: npm install react-router-dom, позволяет переключать страницы перерисовывая компоненты
