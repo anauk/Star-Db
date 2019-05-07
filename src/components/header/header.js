@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './header.css';
+import { Link } from 'react-router-dom';
 
 const Header = ({ onServiceChange }) => {
     return (
@@ -9,9 +10,9 @@ const Header = ({ onServiceChange }) => {
                 <a href="#"> Star DB</a>
             </h3>
         <ul className="d-flex">
-            <li><a href="#">People</a></li>
-            <li><a href="#">Planets</a></li>
-            <li><a href="#">Starships</a></li>
+            <li><Link to="/people">People</Link></li>
+            <li><Link to="/planets">Planets</Link></li>
+            <li><Link to="/starships">Starships</Link></li>
 
         </ul>
 
