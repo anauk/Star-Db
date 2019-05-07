@@ -6,6 +6,10 @@ import Spiner from "../spiner";
 import ErrorIndicator from "../error-indicator";
 
 export default class RandomPanel extends Component {
+    static defaultProps = {
+        updateInterval: 5000
+    };
+
     swapiService = new SwapiService();
 
     state = {
@@ -13,8 +17,9 @@ export default class RandomPanel extends Component {
         loading: true
     };
     componentDidMount(){
+        const { updateInterval } = this.props;
         this.updatePlanet();
-        this.interval = setInterval(this.updatePlanet, 10000);
+        this.interval = setInterval(this.updatePlanet, updateInterval);
     }
     componentWillUnmount() {
         clearInterval(this.interval);

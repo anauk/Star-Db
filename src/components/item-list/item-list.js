@@ -1,17 +1,16 @@
 import React from 'react';
 import './item-list.css';
+import { withData } from '../hoc-helper';
+import SwapiService from '../../services/swapi-service';
 
 const ItemList = (props) => {
-
     const {data, onItemSelected, children: renderLabel} = props;
-
     const items = data.map((item) => {
         const {id} = item;
         const label = renderLabel(item);
 
         return (
-            <li className="list-group-item"
-                key={id}
+            <li className="list-group-item" key={id}
                 onClick={() => onItemSelected(id)}>
                 {label}
             </li>
@@ -25,7 +24,12 @@ const ItemList = (props) => {
     );
 };
 
-//HaierOrderComponents-pattern
+ItemList.defaultProps = {
+    onItemSelected: () => {}
+};
 
-export default ItemList;
+//HaierOrderComponents-pattern
+const { getAllPeople } = new SwapiService();
+
+export default withData(ItemList, getAllPeople);
 
