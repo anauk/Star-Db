@@ -56,7 +56,7 @@ export default class SwapiService {
     };
     getStarshipImage = ({id}) => {
         console.log(id);
-        return `${this._imageBase}/starships/5.jpg`;
+        return `${this._imageBase}/starships/10.jpg`;
     };
     _extractId = (item) => {
         const idRegExp = /\/[0-9]*\/$/;

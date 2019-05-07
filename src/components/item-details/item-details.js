@@ -52,7 +52,7 @@ export default class ItemDetails extends Component {
     render() {
         const {item, image} = this.state;
         if (!item) {
-            return <span>Select person from list</span>;
+            return <span>Select item from list</span>;
         }
         const { name } = item;
 
