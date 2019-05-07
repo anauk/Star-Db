@@ -6,8 +6,7 @@ export default class SwapiService {
         const res = await fetch(`${this._apiBase}${url}`);
 
         if (!res.ok) {
-            throw new Error(`Could not fetch ${url}` +
-                `, received ${res.status}`)
+            throw new Error(`Could not fetch ${url}, received ${res.status}`)
         }
         return await res.json();
     };
@@ -55,8 +54,7 @@ export default class SwapiService {
         return `${this._imageBase}/planets/${id}.jpg`;
     };
     getStarshipImage = ({id}) => {
-        console.log(id);
-        return `${this._imageBase}/starships/10.jpg`;
+        return `${this._imageBase}/starships/11.jpg`;
     };
     _extractId = (item) => {
         const idRegExp = /\/[0-9]*\/$/;
